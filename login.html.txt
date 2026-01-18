@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REPAIR HUB BD</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#1f2937;
+  font-family:Segoe UI, system-ui, sans-serif;
+}
+
+.card{
+  width:380px;
+  background:linear-gradient(#f3f4f6,#f9fafb);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 25px 50px rgba(0,0,0,.25);
+}
+
+.logo-wrap{
+  width:110px;
+  height:0px;
+  margin:0 auto 10px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+.logo-wrap img{
+  width:70px;
+}
+
+h1{
+  margin:12px 0 2px;
+  text-align:center;
+  font-size:26px;
+  font-weight:700;
+  color:#008080;
+}
+.sub{
+  text-align:center;
+  font-size:15px;
+  color:#008080;
+  margin-bottom:20px;
+}
+
+label{
+  font-size:12px;
+  color:#6b7280;
+  font-weight:600;
+}
+
+.input{
+  display:flex;
+  align-items:center;
+  background:#eef4ff;
+  border:1px solid #dbeafe;
+  border-radius:10px;
+  padding:10px 12px;
+  margin:6px 0 14px;
+}
+.input input{
+  border:none;
+  outline:none;
+  background:transparent;
+  flex:1;
+  font-size:15px;
+}
+.input span{
+  opacity:.6;
+  margin-right:8px;
+}
+
+.eye{
+  cursor:pointer;
+  opacity:.6;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:#374151;
+  margin-bottom:18px;
+}
+
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:#1d4ed8;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{background:#1e40af}
+
+.footer{
+  text-align:center;
+  font-size:15px;
+  color:#008080;
+  margin-top:18px;
+}
+.footer span{color:#f59e0b}
+
+.error{
+  color:#dc2626;
+  font-size:13px;
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="logo-wrap">
+    <!-- 🔁 replace logo url if needed -->
+  </div>
+
+  <h1>REPAIR HUB BD</h1>
+  <div class="sub">Delly Income</div>
+
+  <label>USER ID</label>
+  <div class="input">
+    <span>🪪</span>
+    <input id="u" placeholder="User ID">
+  </div>
+
+  <label>PASSWORD</label>
+  <div class="input">
+    <span>🔒</span>
+    <input id="p" type="password" placeholder="Password">
+    <span class="eye" onclick="toggle()">👁</span>
+  </div>
+
+  <div class="row">
+    <input type="checkbox" id="role" checked>
+    <label for="role">Login i Agree</label>
+  </div>
+
+  <button onclick="login()">LOGIN--→</button>
+
+  <div id="msg" class="error"></div>
+
+  <div class="footer">
+    <span>🛡</span> © Copyright REPAIR HUB BD (2026)
+  </div>
+</div>
+
+<script>
+function login(){
+  msg.innerText="Logging in...";
+  google.script.run.withSuccessHandler(ok=>{
+    if(ok){
+      // 🔥 load dashboard without reload
+      google.script.run.withSuccessHandler(html=>{
+        document.open();
+        document.write(html);
+        document.close();
+      }).getDashboardPage();
+    }else{
+      msg.innerText="User ID or Password incorrect";
+    }
+  }).checkLogin(u.value,p.value);
+}
+</script>
+
+</body>
+</html>
